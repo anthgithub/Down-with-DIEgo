@@ -16,6 +16,26 @@ void gameLoop()
 		}
 	}
 }
+
+void drawMap(int*tileData,SDL_Surface *sprite,SDL_Surface *screen)
+{
+	for(int i=0; i<15; i++){
+		for(int j=0; j<20; j++){
+			int type = tileData[i*20+j];
+			SDL_Rect src, dest;
+			src.x = TILESIZE*type;
+			src.y = 0;
+			src.w = TILESIZE;
+			src.h = TILESIZE;
+			dest.x = 32*j;
+			dest.y = 32*i;
+			dest.w = TILESIZE;
+			dest.h = TILESIZE;
+			SDL_BlitSurface(sprite, &src, screen, &dest);
+		}
+	}
+
+}
 int main (int argc, char** argv)
 {
 	SDL_Init(SDL_INIT_VIDEO);
