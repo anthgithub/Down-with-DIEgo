@@ -19,18 +19,24 @@ void gameLoop()
 
 void drawMap(int*tileData,SDL_Surface *sprite,SDL_Surface *screen)
 {
-	for(int i=0; i<15; i++){
-		for(int j=0; j<20; j++){
-			int type = tileData[i*20+j];
-			SDL_Rect src, dest;
-			src.x = TILESIZE*type;
-			src.y = 0;
-			src.w = TILESIZE;
-			src.h = TILESIZE;
-			dest.x = 32*j;
-			dest.y = 32*i;
-			dest.w = TILESIZE;
-			dest.h = TILESIZE;
+	SDL_Rect src, dest;
+
+	src.w = TILESIZE;
+	src.h = TILESIZE;
+	src.y = 0;
+	dest.w = TILESIZE;
+	dest.h = TILESIZE;
+
+	for(int i = 0; i < 15; i++)
+	{
+		for(int j = 0; j < 20; j++)
+		{
+			int type = tileData[i* 20 + j];
+			src.x = TILESIZE * type;
+			
+			dest.x = TILESIZE * j;
+			dest.y = TILESIZE * i;
+
 			SDL_BlitSurface(sprite, &src, screen, &dest);
 		}
 	}
