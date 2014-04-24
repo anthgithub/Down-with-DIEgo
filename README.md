@@ -1,3 +1,1 @@
-Down-with-DIEgo
-===============
-This is where all the everything is stored.
+This project is going to be awesome.
