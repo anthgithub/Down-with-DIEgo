@@ -1,9 +1,7 @@
 #include"SDL/SDL.h"
 #include"SDL/SDL_image.h"
 #include"Player.h"
-#include <string>
-#include <fstream>
-#include <iostream>
+#include"map.h"
 
 void gameLoop()
 {
@@ -21,66 +19,7 @@ void gameLoop()
 	}
 }
 
-void loadmap(int* map, std::string fname)
-{
-	std::string line;
 
-	std::ifstream myfile (fname);        //Text file
-
-	if (myfile.is_open())                 //Open file
-	{
-		int numLines = 0;
-
-		while (getline (myfile,line))      //Read file line by line
-		{
-			int l = line.length() < 20 ? line.length() : 20;
-
-			for (int i = 0; i < l; i++)
-			{
-				switch(line[i])
-				{	
-				case '!':
-					map[numLines*20 + i] = 0;
-					break;
-				case 'x':
-					map[numLines*20 + i] = 1;   
-					break;
-				case '*':
-					map[numLines*20 + i] = 2;
-					break;
-				}	
-			}
-			numLines++;
-		}
-		myfile.close();                     //Close file
-	}
-}
-
-void drawMap(int *tileData, SDL_Surface *sprite, SDL_Surface *screen)
-{
-	SDL_Rect src, dest;
-
-	src.w = TILESIZE;
-	src.h = TILESIZE;
-	src.y = 0;
-	dest.w = TILESIZE;
-	dest.h = TILESIZE;
-
-	for(int i = 0; i < 15; i++)
-	{
-		for(int j = 0; j < 20; j++)
-		{
-			int type = tileData[(i * 20) + j];
-			src.x = TILESIZE * type;
-
-			dest.x = TILESIZE * j;
-			dest.y = TILESIZE * i;
-
-			SDL_BlitSurface(sprite, &src, screen, &dest);
-		}
-	}
-
-}
 int main (int argc, char** argv)
 {
 	SDL_Init(SDL_INIT_VIDEO);
@@ -91,21 +30,17 @@ int main (int argc, char** argv)
 	peterG->screen = screen;
 	int lastTime = SDL_GetTicks();
 
-	int* tehmap = new int [20*15];
-	for(int i = 0; i < 20*15; i++)
-	{
-		tehmap[i] = 0;
-	}
-	loadmap(tehmap, "map.txt");
-	SDL_Surface* tiles = IMG_Load("tile1.bmp");
+	map level1;
 
+	level1.load("map.txt");
+	level1.screen = screen;
+	level1.sprite = IMG_Load("tile1.bmp");
 	while(true)
 	{
 		int currTime = SDL_GetTicks();
 		peterG->update((currTime - lastTime) / 1000.0f);
-		drawMap(tehmap, tiles, screen);
+		level1.draw();
 		peterG->draw();
-
 		SDL_UpdateWindowSurface(gameWindow);
 		gameLoop();
 		lastTime = currTime;
