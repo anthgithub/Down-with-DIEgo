@@ -32,6 +32,8 @@ int main (int argc, char** argv)
 
 	map level1;
 
+	peterG->world = &level1;
+
 	level1.load("map.txt");
 	level1.screen = screen;
 	level1.sprite = IMG_Load("tile1.bmp");
