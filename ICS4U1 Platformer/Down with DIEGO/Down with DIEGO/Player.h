@@ -1,9 +1,12 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include "Object.h"
+#include "map.h"
 class player : public object
 {
 public:
+
+	map* world;
 
 	player() : object()
 	{
