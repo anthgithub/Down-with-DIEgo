@@ -25,8 +25,17 @@ public:
 		vely += 4.9*dt;
 		float tempx = x+velx*dt;
 		float tempy = y+vely*dt;
-		x = tempx;
-		y = tempy;
+		
+		if(world->tiles[int(tempx)+int(tempy)*20]!=0)//We are checking if the approaching tile is occupied
+		{
+			if(tempy + h)
+
+		}
+		else
+		{		
+			x = tempx;
+			y = tempy;
+		}
 	}
 };
 #endif
