@@ -29,6 +29,9 @@ public:
 		if(world->tiles[int(tempx)+int(tempy)*20]!=0)//We are checking if the approaching tile is occupied
 		{
 			if(tempy + h)
+			{
+
+			}
 
 		}
 		else
