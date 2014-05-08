@@ -3,6 +3,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <sstream>
 #include"SDL/SDL.h"
 #include"SDL/SDL_image.h"
 #include "Object.h"
@@ -27,26 +28,24 @@ public:
 		if (myfile.is_open())					//Open file
 		{
 			int numLines = 0;
-			while (getline (myfile,line))		//Read file line by line
+			while (line.compare("data="))		//Read file line by line
 			{
-				int l = line.length() < 20 ? line.length() : 20;
+				getline(myfile,line);
+			}
 
-				for (int i = 0; i < l; i++)
-				{
-					switch(line[i])
-					{	
-					case '!':
-						tiles[numLines*20 + i] = 0;
-						break;
-					case 'x':
-						tiles[numLines*20 + i] = 1;   
-						break;
-					case '*':
-						tiles[numLines*20 + i] = 2;
-						break;
-					}	
-				}
-				numLines++;
+			while (getline(myfile,line))		//Read file line by line
+			{
+					int l = line.length() < 20 ? line.length() : 20;
+
+					std::istringstream row(line);
+
+					for (int i = 0; i < l; i++)
+					{
+						getline(row, line, ',') ;
+						int result = std::stoi(line);
+						tiles[numLines*20 + i] = result;
+					}
+					numLines++;
 			}
 			myfile.close();                     //Close file
 		}
@@ -72,7 +71,7 @@ public:
 
 				SDL_BlitSurface(sprite, &src, screen, &dest);
 			}
-		}
+		}\
 	}
 };
 #endif
