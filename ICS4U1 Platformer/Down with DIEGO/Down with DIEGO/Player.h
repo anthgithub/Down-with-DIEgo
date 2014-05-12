@@ -25,19 +25,35 @@ public:
 		vely += 4.9*dt;
 		float tempx = x+velx*dt;
 		float tempy = y+vely*dt;
+		int topEdge, botEdge, lEdge, rEdge;
+
+		velx *= 0.99;
 		
 		if(world->tiles[int(tempx)+int(tempy)*20]!=0)//We are checking if the approaching tile is occupied
 		{
-			if(tempy + h)
-			{
-
-			}
+			velx = 0;
+			vely = 0;
 		}
-		else
+		if(world->tiles[int(tempx+1)+int(tempy)*20]!=0)//Checks for collision with the right side
+		{
+			velx = 0;
+		}
+		if(world->tiles[int(tempx)+int(tempy+1)*20]!=0)//Checks for collision with ground
+		{
+			x = tempx;
+			vely = 0;
+		}
+		if(world->tiles[int(tempx)+int(tempy-1)*20]!=0)//Checks for collision with the ceiling
+		{
+			x = tempx;
+			vely = 0;
+		}
+		if(world->tiles[int(tempx)+int(tempy)*20]==0)
 		{		
 			x = tempx;
 			y = tempy;
 		}
+		
 	}
 };
 #endif
