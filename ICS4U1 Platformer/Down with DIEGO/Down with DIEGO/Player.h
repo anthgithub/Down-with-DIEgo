@@ -22,19 +22,15 @@ public:
 
 	void update(float dt)
 	{
-		vely += 4.9*dt;
 		float tempx = x+velx*dt;
 		float tempy = y+vely*dt;
-		int topEdge, botEdge, lEdge, rEdge;
-
-		velx *= 0.99;
-		
-		if(world->tiles[int(tempx)+int(tempy)*20]!=0)//We are checking if the approaching tile is occupied
+		vely += 4.9*dt;
+		velx *= 0.995;
+		if(world->tiles[int(tempx+1)+int(tempy)*20]!=0)//Checks for collision with the right side
 		{
 			velx = 0;
-			vely = 0;
 		}
-		if(world->tiles[int(tempx+1)+int(tempy)*20]!=0)//Checks for collision with the right side
+		if(world->tiles[int(tempx)+int(tempy)*20]!=0)//Checks for collision with the left side
 		{
 			velx = 0;
 		}
@@ -43,17 +39,11 @@ public:
 			x = tempx;
 			vely = 0;
 		}
-		if(world->tiles[int(tempx)+int(tempy-1)*20]!=0)//Checks for collision with the ceiling
-		{
-			x = tempx;
-			vely = 0;
-		}
-		if(world->tiles[int(tempx)+int(tempy)*20]==0)
+		if(world->tiles[int(tempx)+int(tempy)*20]==0)//If the tile is free the player can move
 		{		
 			x = tempx;
 			y = tempy;
 		}
-		
 	}
 };
 #endif
