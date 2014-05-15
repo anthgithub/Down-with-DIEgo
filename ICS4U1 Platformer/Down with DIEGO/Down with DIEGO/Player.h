@@ -25,31 +25,41 @@ public:
 		float tempx = x + velx*dt;
 		float tempy = y + vely*dt;
 		int xdir = velx > 0 ? 1 : 0; // get sign using ternary operator
-		int ydir = vely > 0 ? 0 : 1; // get sign using ternary operator
+		int ydir = vely < 0 ? 1 : 0; // get sign using ternary operator
 		velx *= 0.995;
-		if(world->tiles[int(tempx + xdir) + int(tempy + ydir) * 20]!=0)//Checks for collision in the first quadrant
+		vely += 4.9*dt;
+
+		bool q1 = world->tiles[int(tempx + xdir) + int(tempy + ydir) * 20] != 0;
+		bool q2 = world->tiles[int(tempx + xdir) + int(tempy + 1 - ydir) * 20] != 0;
+		bool q3 = world->tiles[int(tempx + 1 - xdir) + int(tempy + 1 - ydir) * 20] != 0;
+		bool q4 = world->tiles[int(tempx + xdir)+int(tempy + 1 - ydir) * 20] != 0;
+
+		if(velx)
 		{
-			velx = 0;
-			//tempx = xdir ? floor(tempx + xdir) : ceil(tempx + xdir);
+			if(q1) //Checks for collision in the first quadrant
+			{
+				velx = 0;
+				tempx = xdir ? floor(tempx) : ceil(tempx);
+			}
+			else if(q1 && (!q3 || q4))//Checks the second quadrant
+			{
+				velx = 0;
+				tempx = xdir ? floor(tempx) : ceil(tempx);
+			}
 		}
-		else if(world->tiles[int(tempx + xdir) + int(tempy + 1 - ydir) * 20] != 0)//Checks the second quadrant
+
+		if(vely)
 		{
-			velx = 0;
-			//tempx = xdir ? floor(tempx + xdir) : ceil(tempx + xdir);
-		}
-		if(world->tiles[int(tempx + 1 - xdir) + int(tempy + 1 - ydir) * 20]!=0)//Checks for collision in the third quadrant
-		{
-			vely = 0;
-			tempy = ydir ? ceil(tempy) : floor(tempy);
-		}
-		else if(world->tiles[int(tempx + xdir)+int(tempy + 1 - ydir) * 20] != 0)//Checked the x component of the first quadrant
-		{
-			vely = 0;
-			tempy = ydir ? ceil(tempy) : floor(tempy);
-		}
-		else
-		{
-			vely += 4.9*dt;
+			if(q3)//Checks for collision in the third quadrant
+			{
+				vely = 0;
+				tempy = ydir ? ceil(tempy) : floor(tempy);
+			}
+			else if(q4)//Checked the x component of the first quadrant
+			{
+				vely = 0;
+				tempy = ydir ? ceil(tempy) : floor(tempy);
+			}
 		}
 
 		x = tempx;
