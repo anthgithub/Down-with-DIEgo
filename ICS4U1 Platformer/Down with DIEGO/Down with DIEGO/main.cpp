@@ -22,11 +22,11 @@ void gameLoop(float dt)
 	}
 	if(keys[SDL_SCANCODE_A] || keys[SDL_SCANCODE_LEFT])
 	{
-		peterG->velx-=6.0*dt;
+		peterG->velx-=32.0*dt;
 	}
 	if(keys[SDL_SCANCODE_D] || keys[SDL_SCANCODE_RIGHT])
 	{
-		peterG->velx+=6.0*dt;
+		peterG->velx+=32*dt;
 	}
 	//if(keys[SDLK_DOWN || SDLK_w])
 
