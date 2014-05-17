@@ -19,7 +19,15 @@ public:
 	~player()
 	{
 	}
-
+	void jump()
+	{
+		if(vely == 0)
+		{
+			vely -= 5;
+		}
+		
+		
+	}
 	void update(float dt)
 	{
 		float tempx = x + velx * dt;
@@ -33,11 +41,13 @@ public:
 		bool q2 = world->tiles[int(tempx + xdir) + int(tempy + 1 - ydir) * 20] != 0;
 		bool q3 = world->tiles[int(tempx + 1 - xdir) + int(tempy + 1 - ydir) * 20] != 0;
 
+		float ttempx = tempx, ttempy = tempy;
+
 		if(velx)
 		{
 			if(q1 || (q2 && !q3)) //Checks for collision in the first quadrant
 			{
-				tempx = xdir ? floor(tempx) : ceil(tempx);
+				ttempx = xdir ? floor(tempx) : ceil(tempx);
 			}
 		}
 
@@ -46,8 +56,20 @@ public:
 			if(q3 || (q2 && !q1))//Checks for collision in the third quadrant
 			{
 				vely = 0;
-				tempy = ydir ? ceil(tempy) : floor(tempy);
+				ttempy = ydir ? ceil(tempy) : floor(tempy);
 			}
+		}
+
+		float xpen = abs(ttempx - tempx); 
+		float ypen = abs(ttempy - tempy);
+
+		if(ypen > xpen)
+		{
+			tempy = ttempy;
+		}
+		else if(ypen < xpen)
+		{
+			tempx = ttempx;
 		}
 
 		x = tempx;
