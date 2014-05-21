@@ -30,16 +30,16 @@ public:
 	}
 	void update(float dt)
 	{
-		float tempx = x + velx * dt;
-		float tempy = y + vely * dt;
-		int xdir = velx > 0 ? 1 : 0; // get sign using ternary operator
-		int ydir = vely < 0 ? 1 : 0; // get sign using ternary operator
+		float tempx = x + velx * dt;//The player's temporary X
+		float tempy = y + vely * dt;//The player's temporary y
+		int xdir = velx > 0 ? 1 : 0; // get x-sign using ternary operator
+		int ydir = vely < 0 ? 1 : 0; // get y-sign using ternary operator
 		velx *= 0.995;
 		vely += 4.9*dt;
 
-		bool q1 = world->tiles[int(tempx + xdir) + int(tempy + ydir) * 20] != 0;
-		bool q2 = world->tiles[int(tempx + xdir) + int(tempy + 1 - ydir) * 20] != 0;
-		bool q3 = world->tiles[int(tempx + 1 - xdir) + int(tempy + 1 - ydir) * 20] != 0;
+		bool q1 = world->tiles[int(tempx + xdir) + int(tempy + ydir) * 20] != 0;//Where the first quadrant is
+		bool q2 = world->tiles[int(tempx + xdir) + int(tempy + 1 - ydir) * 20] != 0;//Where the second quadrant is
+		bool q3 = world->tiles[int(tempx + 1 - xdir) + int(tempy + 1 - ydir) * 20] != 0;//Where the third quadrant is
 
 		float ttempx = tempx, ttempy = tempy;
 
@@ -60,6 +60,7 @@ public:
 			}
 		}
 
+		/*
 		float xpen = abs(ttempx - tempx); 
 		float ypen = abs(ttempy - tempy);
 
@@ -70,7 +71,7 @@ public:
 		else if(ypen < xpen)
 		{
 			tempx = ttempx;
-		}
+		}*/
 
 		x = tempx;
 		y = tempy;
