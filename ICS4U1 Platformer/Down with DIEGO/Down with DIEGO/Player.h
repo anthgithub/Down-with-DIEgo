@@ -25,8 +25,6 @@ public:
 		{
 			vely -= 5;
 		}
-		
-		
 	}
 	void update(float dt)
 	{
