@@ -71,7 +71,7 @@ public:
 
 				SDL_BlitSurface(sprite, &src, screen, &dest);
 			}
-		}\
+		}
 	}
 };
 #endif

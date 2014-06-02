@@ -38,6 +38,7 @@ public:
 		bool q1 = world->tiles[int(tempx + xdir) + int(tempy + ydir) * 20] != 0;//Where the first quadrant is
 		bool q2 = world->tiles[int(tempx + xdir) + int(tempy + 1 - ydir) * 20] != 0;//Where the second quadrant is
 		bool q3 = world->tiles[int(tempx + 1 - xdir) + int(tempy + 1 - ydir) * 20] != 0;//Where the third quadrant is
+		bool q4 = world->tiles[int(tempx + 1 - xdir) + int(tempy + ydir) * 20] != 0; //Where the fourth quadrant is
 		float ttempx = tempx, ttempy = tempy;
 		float xpen;
 		float ypen;
@@ -77,6 +78,24 @@ public:
 		{
 			ttempx = xdir ? floor(tempx) : ceil(tempx);
 			ttempy = ydir ? ceil(tempy) : floor(tempy);
+			vely = 0;
+			xpen = abs(ttempx - tempx); 
+			ypen = abs(ttempy - tempy);	
+			if(ypen > xpen)
+			{
+				tempx = ttempx;
+			}
+			else if(ypen < xpen)
+			{
+				tempy = ttempy;
+			}
+
+		}
+		if(q4) //Checks for collision in the third quadrant
+		{
+			ttempx = xdir ? floor(tempx) : ceil(tempx);
+			ttempy = ydir ? ceil(tempy) : floor(tempy);
+			vely = 0;
 			xpen = abs(ttempx - tempx); 
 			ypen = abs(ttempy - tempy);	
 			if(ypen > xpen)
@@ -90,26 +109,6 @@ public:
 
 		}
 	
-
-
-		if(q3 || (q2 && !q1))//Checks for collision in the third quadrant
-		{
-			vely = 0;
-			ttempy = ydir ? ceil(tempy) : floor(tempy);
-		}
-			
-		xpen = abs(ttempx - tempx); 
-		ypen = abs(ttempy - tempy);
-
-		if(ypen > xpen)
-		{
-			tempx += xpen;
-		}
-		else if(ypen < xpen)
-		{
-			tempy += ypen;
-		}
-
 		x = tempx;
 		y = tempy;
 	

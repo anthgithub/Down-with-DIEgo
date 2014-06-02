@@ -13,7 +13,7 @@ SDL_Window *gameWindow;
 void init()
 {
 	SDL_Init(SDL_INIT_VIDEO);
-	gameWindow = SDL_CreateWindow("Down with DIEgo", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_SHOWN);
+	gameWindow = SDL_CreateWindow("Down with DIEgo", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_SHOWN|SDL_WINDOW_FULLSCREEN);
 	screen = SDL_GetWindowSurface(gameWindow);
 
 	music = NULL;
@@ -31,6 +31,15 @@ void gameLoop(float dt)
 		switch(event.type)
 		{
 		case SDL_KEYDOWN:
+			if(keys[SDL_SCANCODE_SPACE])
+			{
+				peterG->jump();
+			}
+			if(keys[SDL_SCANCODE_ESCAPE])
+			{
+				//SDL_Quit();
+				exit(0);
+			}
 			break;
 		case SDL_QUIT:
 			exit(0);
@@ -39,15 +48,11 @@ void gameLoop(float dt)
 	}
 	if(keys[SDL_SCANCODE_A] || keys[SDL_SCANCODE_LEFT])
 	{
-		peterG->velx-=6.0*dt;
+		peterG->velx-=256.0*dt;
 	}
 	if(keys[SDL_SCANCODE_D] || keys[SDL_SCANCODE_RIGHT])
 	{
-		peterG->velx+=6.0*dt;
-	}
-	if(keys[SDL_SCANCODE_SPACE])
-	{
-		peterG->jump();
+		peterG->velx+=256.0*dt;
 	}
 
 	//if(keys[SDLK_UP || SDLK_s])
