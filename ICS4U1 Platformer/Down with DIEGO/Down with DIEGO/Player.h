@@ -70,7 +70,7 @@ public:
 			frame++;
 			accum = 0.0f;
 
-			if(frame > 3)
+			if(frame > 5)
 			{
 				frame = 0;
 			}
