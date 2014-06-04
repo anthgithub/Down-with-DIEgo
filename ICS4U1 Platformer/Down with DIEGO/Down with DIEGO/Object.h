@@ -1,6 +1,7 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 #include "SDL\SDL.h"
+#include "Player.h"
 #define TILESIZE 32
 class object
 {
@@ -34,15 +35,15 @@ public:
 	{
 	}
 
-	void draw()
+	void draw(float ox = 0.0f, float oy = 0.0f)
 	{
 		SDL_Rect src, dest;
 		src.x = 0;
 		src.y = 0;
 		src.w = w*TILESIZE;
 		src.h = h*TILESIZE;
-		dest.x = x*TILESIZE;
-		dest.y = y*TILESIZE;
+		dest.x = (ox + x)*TILESIZE;
+		dest.y = (oy + y)*TILESIZE;
 		dest.w = w*TILESIZE;
 		dest.h = h*TILESIZE;
 		SDL_BlitSurface(sprite, &src, screen, &dest);

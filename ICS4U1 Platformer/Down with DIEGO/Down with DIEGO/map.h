@@ -18,8 +18,8 @@ public:
 
 	void load(std::string fname)
 	{
-		tiles = new int [20*15];
-		for(int i = 0; i < 20*15; i++)
+		tiles = new int [40*30];
+		for(int i = 0; i < 40*30; i++)
 		{
 			tiles[i] = 0;
 		}
@@ -35,7 +35,7 @@ public:
 
 			while (getline(myfile,line))		//Read file line by line
 			{
-					int l = line.length() < 20 ? line.length() : 20;
+					int l = line.length() < 30 ? line.length() : 30;
 
 					std::istringstream row(line);
 
@@ -43,7 +43,7 @@ public:
 					{
 						getline(row, line, ',') ;
 						int result = std::stoi(line);
-						tiles[numLines*20 + i] = result;
+						tiles[numLines*30 + i] = result;
 					}
 					numLines++;
 			}
@@ -51,7 +51,7 @@ public:
 		}
 	}
 
-	void draw()
+	void draw(float ox = 0.0f, float oy = 0.0f)
 	{
 		SDL_Rect src, dest;
 		src.w = TILESIZE;
@@ -59,19 +59,20 @@ public:
 		src.y = 0;
 		dest.w = TILESIZE;
 		dest.h = TILESIZE;
-		for(int i = 0; i < 15; i++)
+
+		for(int i = 0; i < 40; i++)
 		{
-			for(int j = 0; j < 20; j++)
+			for(int j = 0; j < 30; j++)
 			{
-				int type = tiles[(i * 20) + j];
+				int type = tiles[(i * 30) + j];
 				src.x = TILESIZE * type;
 
-				dest.x = TILESIZE * j;
-				dest.y = TILESIZE * i;
+				dest.x = TILESIZE * (j + ox);
+				dest.y = TILESIZE * (i + oy);
 
 				SDL_BlitSurface(sprite, &src, screen, &dest);
 			}
-		}\
+		}
 	}
 };
 #endif
