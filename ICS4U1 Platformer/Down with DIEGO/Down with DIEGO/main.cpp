@@ -65,7 +65,7 @@ int main (int argc, char** argv)
 	music = Mix_LoadMUS( "tarkus.flac" );
 
 	peterG = new player();
-	peterG->sprite = IMG_Load("MMSprite.png");
+	peterG->sprite = IMG_Load("HeroAni.png");
 	peterG->screen = screen;
 	int lastTime = SDL_GetTicks();
 

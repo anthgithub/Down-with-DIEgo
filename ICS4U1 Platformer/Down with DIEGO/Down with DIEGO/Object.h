@@ -7,12 +7,15 @@ class object
 {
 public:
 
+	int frame;
+
 	float x, y, velx, vely;
 	int w, h;
 	SDL_Surface *sprite, *screen;
 
 	object()
 	{
+		frame = 0;
 		x = 0;
 		y = 0;
 		velx = 0;
@@ -23,6 +26,7 @@ public:
 
 	object(float nx, float ny, int nw = 1, int nh = 1)
 	{
+		frame = 0;
 		x = nx;
 		y = ny;
 		velx = 0;
@@ -39,7 +43,7 @@ public:
 	{
 		SDL_Rect src, dest;
 		src.x = 0;
-		src.y = 0;
+		src.y = 0 + frame*TILESIZE;
 		src.w = w*TILESIZE;
 		src.h = h*TILESIZE;
 		dest.x = (ox + x)*TILESIZE;
