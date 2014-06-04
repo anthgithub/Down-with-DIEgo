@@ -37,10 +37,10 @@ public:
 	bool placeMeeting(float x, float y)
 	{
 
-		return	world->tiles[int(x) + int(y) * 30] != 0 ||
-				world->tiles[int(x + 0.97f) + int(y + 0.97f) * 30] != 0 ||
-				world->tiles[int(x + 0.97f) + int(y) * 30] != 0 ||
-				world->tiles[int(x) + int(y + 0.97f) * 30] != 0;
+		return	world->tiles[int(x + 0.25f) + int(y) * 30] != 0 ||
+				world->tiles[int(x + 0.75f) + int(y + 0.97f) * 30] != 0 ||
+				world->tiles[int(x + 0.75f) + int(y) * 30] != 0 ||
+				world->tiles[int(x + 0.25f) + int(y + 0.97f) * 30] != 0;
 	}
 
 	float sign(float n)

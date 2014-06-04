@@ -39,7 +39,7 @@ public:
 	{
 	}
 
-	void draw(float ox = 0.0f, float oy = 0.0f)
+	virtual void draw(float ox = 0.0f, float oy = 0.0f)
 	{
 		SDL_Rect src, dest;
 		src.x = 0;
