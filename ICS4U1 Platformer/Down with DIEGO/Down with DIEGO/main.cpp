@@ -10,6 +10,9 @@ SDL_Surface *screen;
 Mix_Music *music;
 SDL_Window *gameWindow;
 
+float player::px = 0;
+float player::py = 0;
+
 void init()
 {
 	SDL_Init(SDL_INIT_VIDEO);
@@ -31,6 +34,10 @@ void gameLoop(float dt)
 		switch(event.type)
 		{
 		case SDL_KEYDOWN:
+			if(keys[SDL_SCANCODE_SPACE])
+			{
+				peterG->jump();
+			}
 			break;
 		case SDL_QUIT:
 			exit(0);
@@ -39,15 +46,11 @@ void gameLoop(float dt)
 	}
 	if(keys[SDL_SCANCODE_A] || keys[SDL_SCANCODE_LEFT])
 	{
-		peterG->velx-=6.0*dt;
+		peterG->velx-=256.0*dt;
 	}
 	if(keys[SDL_SCANCODE_D] || keys[SDL_SCANCODE_RIGHT])
 	{
-		peterG->velx+=6.0*dt;
-	}
-	if(keys[SDL_SCANCODE_SPACE])
-	{
-		peterG->jump();
+		peterG->velx+=256.0*dt;
 	}
 
 	//if(keys[SDLK_UP || SDLK_s])
@@ -75,9 +78,10 @@ int main (int argc, char** argv)
 	level1.sprite = IMG_Load("tile1.bmp");
 	while(true)
 	{
+		SDL_FillRect(screen, &screen->clip_rect, 0x00A0C0);
 		int currTime = SDL_GetTicks();
 		peterG->update((currTime - lastTime) / 1000.0f);
-		level1.draw();
+		level1.draw(10 - player::px, 7 - player::py);
 		peterG->draw();
 		SDL_UpdateWindowSurface(gameWindow);
 		gameLoop((currTime - lastTime) / 1000.0f);
