@@ -70,7 +70,15 @@ public:
 				dest.x = TILESIZE * (j + ox);
 				dest.y = TILESIZE * (i + oy);
 
-				SDL_BlitSurface(sprite, &src, screen, &dest);
+				if(dest.y > screen->h || dest.y < -TILESIZE)
+				{
+					break;
+				}
+
+				if(dest.x < screen->h || dest.y > -TILESIZE)
+				{
+					SDL_BlitSurface(sprite, &src, screen, &dest);
+				}
 			}
 		}
 	}
