@@ -29,7 +29,7 @@ public:
 	{
 		if(vely == 0)
 		{
-			vely -= 5;
+			vely -= 7;
 		}
 	}
 	bool placeMeeting(float x, float y)
@@ -76,7 +76,6 @@ public:
 	}
 	void update(float dt,float px)
 	{
-		
 		incrementFrame(dt);
 
 		vely += 20*dt; //gravity
@@ -84,22 +83,10 @@ public:
 		float tempx = x + velx * dt;//The player's temporary X
 		float tempy = y + vely * dt;//The player's temporary y
 
-		if(status==1)// causes the enemy to chase and jump if that is its behavior
-		{
-			velx=(tempx>px) ? -1 : (tempx<px)*SPEED;//gets direction to desired point
-			jump();
-		}
-		else if(status==0)// causes the enemy to pace if not a chaser
-		{
-			if(tempx<x1)
-				velx=SPEED;
-			else if(tempx>x2)
-				velx=-SPEED;
-		}
-
+		
 		if(placeMeeting(tempx, y))
 		{
-			while(!placeMeeting(y + sign(velx), y))
+			while(!placeMeeting(x + sign(velx), y))
 			{
 				tempx += sign(velx);
 			}
@@ -116,6 +103,30 @@ public:
 			vely = 0;
 		}
 		y += vely * dt;
+
+		if(status==1)// causes the enemy to chase and jump if that is its behavior
+		{
+			velx=(tempx>px) ? -1 : (tempx<px)*SPEED;//gets direction to desired point
+			jump();
+		}
+		
+		else if(status==0)// causes the enemy to pace if not a chaser
+		{
+			if(tempx<x1)
+				velx=SPEED;
+			else if(tempx>x2)
+				velx=-SPEED;
+		}
+
+		//changes the direction the enemy is facing.
+		if(velx>0)
+		{
+			dir=1;
+		}
+		else if(velx<0)
+		{
+			dir=0;
+		}
 	}
 };
 #endif

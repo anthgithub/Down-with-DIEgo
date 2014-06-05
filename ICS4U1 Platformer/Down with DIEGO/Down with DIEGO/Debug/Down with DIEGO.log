@@ -1,22 +1,23 @@
-﻿Build started 2014-06-04 1:39:44 PM.
+﻿Build started 2014-06-05 1:32:20 PM.
      1>Project "C:\Users\Gabriel\Documents\GitHub\Down-with-DIEgo\ICS4U1 Platformer\Down with DIEGO\Down with DIEGO\Down with DIEGO.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\Down with DIEGO.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
          main.cpp
-     1>c:\users\gabriel\documents\github\down-with-diego\ics4u1 platformer\down with diego\down with diego\object.h(49): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\gabriel\documents\github\down-with-diego\ics4u1 platformer\down with diego\down with diego\object.h(50): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\gabriel\documents\github\down-with-diego\ics4u1 platformer\down with diego\down with diego\object.h(57): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\gabriel\documents\github\down-with-diego\ics4u1 platformer\down with diego\down with diego\map.h(70): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\gabriel\documents\github\down-with-diego\ics4u1 platformer\down with diego\down with diego\map.h(71): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\gabriel\documents\github\down-with-diego\ics4u1 platformer\down with diego\down with diego\object.h(51): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\gabriel\documents\github\down-with-diego\ics4u1 platformer\down with diego\down with diego\object.h(52): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\gabriel\documents\github\down-with-diego\ics4u1 platformer\down with diego\down with diego\object.h(59): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\gabriel\documents\github\down-with-diego\ics4u1 platformer\down with diego\down with diego\map.h(41): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\gabriel\documents\github\down-with-diego\ics4u1 platformer\down with diego\down with diego\map.h(73): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\gabriel\documents\github\down-with-diego\ics4u1 platformer\down with diego\down with diego\map.h(74): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
      1>c:\users\gabriel\documents\github\down-with-diego\ics4u1 platformer\down with diego\down with diego\player.h(84): warning C4305: '*=' : truncation from 'double' to 'float'
-     1>c:\users\gabriel\documents\github\down-with-diego\ics4u1 platformer\down with diego\down with diego\enemy.h(89): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\gabriel\documents\github\down-with-diego\ics4u1 platformer\down with diego\down with diego\missile.h(44): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\gabriel\documents\github\down-with-diego\ics4u1 platformer\down with diego\down with diego\missile.h(45): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\gabriel\documents\github\down-with-diego\ics4u1 platformer\down with diego\down with diego\missile.h(47): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\gabriel\documents\github\down-with-diego\ics4u1 platformer\down with diego\down with diego\main.cpp(61): warning C4244: '-=' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\gabriel\documents\github\down-with-diego\ics4u1 platformer\down with diego\down with diego\main.cpp(65): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\gabriel\documents\github\down-with-diego\ics4u1 platformer\down with diego\down with diego\enemy.h(109): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\gabriel\documents\github\down-with-diego\ics4u1 platformer\down with diego\down with diego\missile.h(51): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\gabriel\documents\github\down-with-diego\ics4u1 platformer\down with diego\down with diego\missile.h(52): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\gabriel\documents\github\down-with-diego\ics4u1 platformer\down with diego\down with diego\missile.h(54): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\gabriel\documents\github\down-with-diego\ics4u1 platformer\down with diego\down with diego\main.cpp(64): warning C4244: '-=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\gabriel\documents\github\down-with-diego\ics4u1 platformer\down with diego\down with diego\main.cpp(68): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Gabriel\Documents\GitHub\Down-with-DIEgo\ICS4U1 Platformer\Down with DIEGO\Debug\Down with DIEGO.exe" /NOLOGO SDL2main.lib SDL2.lib SDL2_image.lib SDL2_mixer.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\Down with DIEGO.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Gabriel\Documents\GitHub\Down-with-DIEgo\ICS4U1 Platformer\Down with DIEGO\Debug\Down with DIEGO.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Gabriel\Documents\GitHub\Down-with-DIEgo\ICS4U1 Platformer\Down with DIEGO\Debug\Down with DIEGO.lib" /MACHINE:X86 Debug\main.obj
          LINK : C:\Users\Gabriel\Documents\GitHub\Down-with-DIEgo\ICS4U1 Platformer\Down with DIEGO\Debug\Down with DIEGO.exe not found or not built by the last incremental link; performing full link
@@ -31,4 +32,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.96
+Time Elapsed 00:00:01.95

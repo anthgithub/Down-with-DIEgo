@@ -12,14 +12,17 @@ class map
 {
 public:
 	int *tiles;
-
+	int mh;
+	int mw;
 	SDL_Surface *sprite;
 	SDL_Surface *screen;
 
 	void load(std::string fname)
 	{
-		tiles = new int [40*30];
-		for(int i = 0; i < 40*30; i++)
+		mh=40;
+		mw=30;
+		tiles = new int [mh*mw];
+		for(int i = 0; i < mh*mw; i++)
 		{
 			tiles[i] = 0;
 		}
@@ -35,7 +38,7 @@ public:
 
 			while (getline(myfile,line))		//Read file line by line
 			{
-					int l = line.length() < 30 ? line.length() : 30;
+					int l = line.length() < mw ? line.length() : mw;
 
 					std::istringstream row(line);
 
@@ -43,7 +46,7 @@ public:
 					{
 						getline(row, line, ',') ;
 						int result = std::stoi(line);
-						tiles[numLines*30 + i] = result;
+						tiles[numLines*mw + i] = result;
 					}
 					numLines++;
 			}
@@ -60,11 +63,11 @@ public:
 		dest.w = TILESIZE;
 		dest.h = TILESIZE;
 
-		for(int i = 0; i < 40; i++)
+		for(int i = 0; i < mh; i++)
 		{
-			for(int j = 0; j < 30; j++)
+			for(int j = 0; j < mw; j++)
 			{
-				int type = tiles[(i * 30) + j];
+				int type = tiles[(i * mw) + j];
 				src.x = TILESIZE * type;
 
 				dest.x = TILESIZE * (j + ox);

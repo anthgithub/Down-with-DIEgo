@@ -7,7 +7,7 @@ class object
 {
 public:
 
-	int frame;
+	int frame, dir;
 
 	float x, y, velx, vely;
 	int w, h;
@@ -16,6 +16,7 @@ public:
 	object()
 	{
 		frame = 0;
+		dir=0;
 		x = 0;
 		y = 0;
 		velx = 0;
@@ -27,6 +28,7 @@ public:
 	object(float nx, float ny, int nw = 1, int nh = 1)
 	{
 		frame = 0;
+		dir = 0;
 		x = nx;
 		y = ny;
 		velx = 0;
@@ -42,7 +44,7 @@ public:
 	virtual void draw(float ox = 0.0f, float oy = 0.0f)
 	{
 		SDL_Rect src, dest;
-		src.x = 0;
+		src.x = 0 + dir*TILESIZE;
 		src.y = 0 + frame*TILESIZE;
 		src.w = w*TILESIZE;
 		src.h = h*TILESIZE;

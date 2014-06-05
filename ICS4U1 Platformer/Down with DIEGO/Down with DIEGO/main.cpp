@@ -18,6 +18,7 @@ SDL_Window *gameWindow;
 
 float player::px = 0;
 float player::py = 0;
+float pGMissileT = 0;
 
 void init()
 {
@@ -35,13 +36,14 @@ void init()
 void gameLoop(float dt)
 {
 	static int pGMissileCount=0;
+	pGMissileT+=dt;
 	SDL_Event event;
 	while(SDL_PollEvent(&event))
 	{
 		switch(event.type)
 		{
 		case SDL_KEYDOWN:
-			if(keys[SDL_SCANCODE_SPACE])
+			if(keys[SDL_SCANCODE_UP] || keys[SDL_SCANCODE_W])
 			{
 				peterG->jump();
 			}
@@ -50,10 +52,11 @@ void gameLoop(float dt)
 			exit(0);
 			break;
 		}
-		if(keys[SDL_SCANCODE_X])
+		if(keys[SDL_SCANCODE_SPACE] && pGMissileT>=0.2)
 		{
-			pGMissile[pGMissileCount%5].start(peterG->x,peterG->y);
+			pGMissile[pGMissileCount%10].start(peterG->px,peterG->py,peterG->velx);
 			pGMissileCount++;
+			pGMissileT=0;
 		}
 	}
 	if(keys[SDL_SCANCODE_A] || keys[SDL_SCANCODE_LEFT])
@@ -89,7 +92,7 @@ int main (int argc, char** argv)
 	level1.screen = screen;
 	level1.sprite = IMG_Load("tile1.bmp");
 
-	enemy1 = new enemy(1,1,0,true);
+	enemy1 = new enemy(1,1,4,0);
 	enemy1->sprite = IMG_Load("WalkerAni.png");
 	enemy1->screen = screen;
 	enemy1->world = &level1;
@@ -97,7 +100,7 @@ int main (int argc, char** argv)
 	pGMissile = new missile [10];
 	for(int i = 0; i < 10; i++)
 	{
-		pGMissile[i] = missile(-1, -1);
+		pGMissile[i] = missile(-10, -10);
 		pGMissile[i].screen = screen;
 		pGMissile[i].world = &level1;// This loads though, jus cause
 	}
@@ -107,7 +110,7 @@ int main (int argc, char** argv)
 		SDL_FillRect(screen, &screen->clip_rect, 0x00A0C0);
 		int currTime = SDL_GetTicks();
 		peterG->update((currTime - lastTime) / 1000.0f);
-		enemy1->update((currTime - lastTime) / 1000.0f,peterG->x);
+		enemy1->update((currTime - lastTime) / 1000.0f,peterG->px);
 
 		level1.draw(10 - player::px, 7 - player::py);
 		peterG->draw();

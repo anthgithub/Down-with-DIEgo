@@ -25,16 +25,23 @@ public:
 	{
 	}
 
-	void start(float nx,float ny) // This should place the missile at the location of the object firing.
+	void start(float nx,float ny,float pv) // This should place the missile at the location of the object firing.
 	{
 		x=nx;
 		y=ny;
-		velx=10;
+		if(pv>=0) // chooses which direction the missiles go in.
+		{
+			velx=15;
+		}
+		else
+		{
+			velx=-15;
+		}
 	}
 	void stop() // This should place the missile off-screen.
 	{
-		x=-1;
-		y=-1;
+		x=-15;
+		y=-15;
 		velx=0;
 	}
 
@@ -44,7 +51,7 @@ public:
 		dest.x = (ox + x)*TILESIZE;
 		dest.y = (oy + y)*TILESIZE;
 		dest.w = w*TILESIZE;
-		dest.h = h*0.25f*TILESIZE;
+		dest.h = h*0.2f*TILESIZE;
 
 		SDL_FillRect(screen, &dest, color);
 	}
@@ -54,8 +61,8 @@ public:
 		float tempx = x+velx*dt;
 		float tempy = y+vely*dt;
 
-		if(world->tiles[int(tempx) + int(tempy) * 20] != 0 
-			|| (world->tiles[(int(tempx)+1) + (int(tempy) * 20)] != 0))//We are checking if the approaching tile is occupied
+		if(world->tiles[int(tempx) + int(tempy) * world->mw] != 0 
+			|| (world->tiles[(int(tempx)+1) + (int(tempy) * world->mw)] != 0))//We are checking if the approaching tile is occupied
 		{
 			stop();
 			return;
