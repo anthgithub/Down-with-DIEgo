@@ -84,6 +84,15 @@ public:
 		velx *= 0.965;
 		vely += 20*dt; //gravity
 
+		if (velx > 12) //speed cap
+		{
+			velx = 12;
+		}
+		if (velx <-12)
+		{
+			velx = -12;
+		}
+
 		float tempx = px + velx * dt;//The player's temporary X
 		float tempy = py + vely * dt;//The player's temporary y
 
@@ -91,7 +100,7 @@ public:
 		{
 			while(!placeMeeting(px + sign(velx), py))
 			{
-				tempx += sign(velx);
+				px += sign(velx);
 			}
 			velx = 0;
 		}
@@ -101,7 +110,7 @@ public:
 		{
 			while(!placeMeeting(px, py + sign(vely)))
 			{
-				tempy += sign(vely);
+				py += sign(vely);
 			}
 			vely = 0;
 		}

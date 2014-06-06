@@ -82,13 +82,12 @@ public:
 
 		float tempx = x + velx * dt;//The player's temporary X
 		float tempy = y + vely * dt;//The player's temporary y
-
 		
 		if(placeMeeting(tempx, y))
 		{
 			while(!placeMeeting(x + sign(velx), y))
 			{
-				tempx += sign(velx);
+				x += sign(velx);
 			}
 			velx = 0;
 		}
@@ -98,7 +97,7 @@ public:
 		{
 			while(!placeMeeting(x, y + sign(vely)))
 			{
-				tempy += sign(vely);
+				y += sign(vely);
 			}
 			vely = 0;
 		}

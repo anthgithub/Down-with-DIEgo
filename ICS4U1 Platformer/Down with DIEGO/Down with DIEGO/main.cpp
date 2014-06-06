@@ -77,7 +77,7 @@ int main (int argc, char** argv)
 {
 	
 	init();
-	music = Mix_LoadMUS( "tarkus.flac" );
+	music = Mix_LoadMUS("heavy_metal.flac");
 
 	peterG = new player();
 	peterG->sprite = IMG_Load("HeroAni.png");
